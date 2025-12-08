@@ -1,0 +1,248 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  color: #333;
+  margin: 0;
+  padding: 20px 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  max-width: 900px;
+  width: 100%;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  padding: 25px 40px;
+  text-align: center;
+}
+
+nav {
+  margin-bottom: 20px;
+}
+
+.nav-btn {
+  background-color: #4db6ac;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 12px;
+  transition: background-color 0.3s;
+  user-select: none;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background-color: #26a69a;
+}
+
+main section {
+  display: none;
+}
+
+main section.active-section {
+  display: block;
+}
+
+h1, h2, h3 {
+  color: #00796b;
+}
+
+#question {
+  font-size: 18px;
+  margin: 1.5em 0 1em;
+  min-height: 48px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#options {
+  max-width: 600px;
+  margin: 0 auto 1.5em;
+  text-align: left;
+}
+
+.option {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.option input[type="radio"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+button {
+  background-color: #4db6ac;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px 6px;
+  transition: background-color 0.3s;
+  user-select: none;
+}
+
+button:hover {
+  background-color: #26a69a;
+}
+
+#message,
+#result-message {
+  margin: 20px 0;
+  font-weight: 700;
+  color: #d32f2f;
+  min-height: 24px;
+}
+
+#attempts {
+  color: #f57c00;
+  font-weight: 600;
+  margin-bottom: 1em;
+}
+
+.word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  user-select: none;
+}
+
+.word {
+  background-color: #a5d6a7;
+  color: #1b5e20;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: grab;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(27, 94, 32, 0.4);
+  transition: background-color 0.3s;
+  min-width: 80px;
+  text-align: center;
+}
+
+.word:active {
+  cursor: grabbing;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.category {
+  flex: 1;
+  background-color: #c8e6c9;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.3);
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+}
+
+.category h3 {
+  margin: 0 0 12px 0;
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+.dropzone {
+  flex-grow: 1;
+  background-color: #edf7ed;
+  border: 2px dashed #81c784;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 90px;
+  justify-content: center;
+  align-items: flex-start;
+  user-select: none;
+}
+
+.dropzone .word {
+  cursor: grab;
+}
+
+/* Form Admin Stage 1 */
+#admin-stage1, #admin-stage2 {
+  max-height: 350px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.admin-level {
+  margin-bottom: 1.8em;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 12px;
+}
+
+.admin-level:last-child {
+  border-bottom: none;
+}
+
+.admin-level label {
+  display: block;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.admin-level input[type="text"],
+.admin-level select,
+.admin-level input[type="number"] {
+  width: 95%;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  margin-top: 4px;
+}
+
+@media (max-width: 700px) {
+  .categories {
+    flex-direction: column;
+  }
+  .category {
+    margin-bottom: 20px;
+  }
+}
+/* Footer styling */
+footer {
+  width: 100%;
+  background-color: #00796b;
+  color: white;
+  padding: 12px 0;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer p {
+  margin: 0;
+  line-height: 1.4em;
+}

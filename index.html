@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Game Bahasa Indonesia</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+
+    <!-- Menu Utama -->
+    <nav>
+      <button id="btn-home" class="nav-btn active">Home</button>
+      <button id="btn-game" class="nav-btn">Mainkan Game</button>
+      <button id="btn-admin" class="nav-btn">Admin Panel</button>
+    </nav>
+
+    <main>
+      <!-- Home -->
+      <section id="home-section" class="active-section">
+        <h1>Selamat Datang di Game Bahasa Indonesia</h1>
+        <p>Pelajari Bahasa Indonesia dengan cara menyenangkan!</p>
+        <button id="start-game-btn">Mulai Game</button>
+      </section>
+
+      <!-- Game Stage 1 & 2 -->
+      <section id="game-section">
+        <div id="stage1">
+          <h2>Stage 1: Puzzle Pilihan Ganda</h2>
+          <div id="question"></div>
+          <div id="options"></div>
+          <button id="btn-answer">Jawab</button>
+          <p id="message"></p>
+          <p>Kesempatan tersisa: <span id="attempts"></span></p>
+          <button id="btn-stage2">Lanjut ke Stage 2 &raquo;</button>
+          <button id="btn-back-home1">Kembali ke Home</button>
+        </div>
+
+        <div id="stage2">
+          <h2>Stage 2: Games Pindahkan Kata</h2>
+          <p>Drag & drop kata ke kategori yang tepat:</p>
+          <div id="word-bank" class="word-bank"></div>
+
+          <div class="categories">
+            <div class="category" id="kata-sifat" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <h3>Kata Sifat</h3>
+              <div class="dropzone" id="drop-sifat"></div>
+            </div>
+            <div class="category" id="kata-kerja" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <h3>Kata Kerja</h3>
+              <div class="dropzone" id="drop-kerja"></div>
+            </div>
+            <div class="category" id="kata-benda" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <h3>Kata Benda</h3>
+              <div class="dropzone" id="drop-benda"></div>
+            </div>
+          </div>
+          <button id="btn-check-stage2">Cek Jawaban</button>
+          <p id="result-message"></p>
+          <button id="btn-back-stage1"> &laquo; Kembali ke Stage 1</button>
+          <button id="btn-back-home2">Kembali ke Home</button>
+        </div>
+      </section>
+
+      <!-- Admin Panel -->
+      <section id="admin-section">
+        <h2>Admin Panel: Input dan Edit Soal</h2>
+        <p>Atur soal pilihan ganda di Stage 1 dan kata-kata kategori di Stage 2.</p>
+        
+        <h3>Soal Stage 1 (Pilihan Ganda)</h3>
+        <div id="admin-stage1"></div>
+        <button id="save-stage1">Simpan Soal Stage 1</button>
+
+        <h3 style="margin-top: 30px;">Soal Stage 2 (Pindahkan Kata)</h3>
+        <div id="admin-stage2"></div>
+        <button id="save-stage2">Simpan Soal Stage 2</button>
+
+        <br/>
+        <button id="btn-back-home-admin">Kembali ke Home</button>
+        <p id="admin-message"></p>
+      </section>
+    </main>
+  </div>
+  <footer>
+  <p>Credit Bintang Kartika & Agas Wedyastika - For The Future<br>Menuju Indonesia Emas 2045</p>
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

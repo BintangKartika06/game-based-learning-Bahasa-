@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Game Puzzle & Pindahkan Kata - Belajar Bahasa Indonesia</title>
+  <style>
+    /* ===== Umum ===== */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+      color: #333;
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      padding: 25px 35px;
+      text-align: center;
+    }
+    h1, h2, h3 {
+      color: #00796b;
+      margin-bottom: 0.5em;
+    }
+    button {
+      background-color: #4db6ac;
+      color: white;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 5px 6px;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #26a69a;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1.2em;
+    }
+    #message {
+      margin: 20px 0;
+      font-weight: 700;
+      min-height: 24px;
+      color: #d32f2f;
+    }
+    #attempts {
+      color: #f57c00;
+      font-weight: 600;
+      margin-bottom: 1em;
+    }
+    input, label {
+      font-size: 14px;
+    }
+    input[type="number"] {
+      width: 40px;
+      padding: 3px 5px;
+      border-radius: 4px;
+      border: 1px solid #bbb;
+      text-align: center;
+    }
+
+    /* ===== STAGE 1: Puzzle Pilihan Ganda ===== */
+    #stage1 {
+      display: block;
+    }
+    #question {
+      font-size: 18px;
+      margin: 1.5em 0 1em;
+      min-height: 48px;
+    }
+    #options {
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto 1.5em;
+    }
+    .option {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .option input[type="radio"] {
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    /* ===== STAGE 2: Pindahkan Kata ===== */
+    #stage2 {
+      display: none;
+      margin-top: 15px;
+    }
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 25px;
+      user-select: none;
+    }
+    .word {
+      background-color: #a5d6a7;
+      color: #1b5e20;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: grab;
+      font-weight: 600;
+      box-shadow: 0 2px 4px rgba(27, 94, 32, 0.4);
+      transition: background-color 0.3s;
+      min-width: 80px;
+      text-align: center;
+    }
+    .word:active {
+      cursor: grabbing;
+    }
+    .categories {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .category {
+      flex: 1;
+      background-color: #c8e6c9;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.3);
+      display: flex;
+      flex-direction: column;
+      min-height: 150px;
+    }
+    .category h3 {
+      margin: 0 0 12px 0;
+      color: #2e7d32;
+      font-weight: 700;
+    }
+    .dropzone {
+      flex-grow: 1;
+      background-color: #edf7ed;
+      border: 2px dashed #81c784;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 90px;
+      justify-content: center;
+      align-items: flex-start;
+      user-select: none;
+    }
+    .dropzone .word {
+      cursor: grab;
+    }
+    #result-message {
+      font-weight: 700;
+      font-size: 18px;
+      min-height: 30px;
+    }
+
+    /* Responsif */
+    @media (max-width:600px) {
+      .categories {
+        flex-direction: column;
+      }
+      .category {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Game Bahasa Indonesia</h1>
+
+    <!-- Stage 1: Puzzle Pilihan Ganda -->
+    <section id="stage1">
+      <h2>Stage 1: Puzzle Pilihan Ganda</h2>
+      <p>Jawab soal berikut untuk belajar Bahasa Indonesia:</p>
+
+      <div id="question"></div>
+      <div id="options"></div>
+      <button onclick="checkAnswer()">Jawab</button>
+      <p id="message"></p>
+      <p>Kesempatan tersisa: <span id="attempts"></span></p>
+
+      <button style="margin-top:20px;" onclick="goToStage2()">Lanjut ke Stage 2 &raquo;</button>
+    </section>
+
+    <!-- Stage 2: Pindahkan Kata -->
+    <section id="stage2">
+      <h2>Stage 2: Games Pindahkan Kata</h2>
+      <p>Drag dan drop kata ke kategori yang tepat:</p>
+
+      <div id="word-bank" class="word-bank"></div>
+
+      <div class="categories">
+        <div class="category" id="kata-sifat" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3>Kata Sifat</h3>
+          <div class="dropzone" id="drop-sifat"></div>
+        </div>
+        <div class="category" id="kata-kerja" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3>Kata Kerja</h3>
+          <div class="dropzone" id="drop-kerja"></div>
+        </div>
+        <div class="category" id="kata-benda" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <h3>Kata Benda</h3>
+          <div class="dropzone" id="drop-benda"></div>
+        </div>
+      </div>
+
+      <button id="check-button" onclick="checkStage2Answers()">Cek Jawaban</button>
+      <p id="result-message"></p>
+
+      <button style="margin-top:20px;" onclick="backToStage1()"> &laquo; Kembali ke Stage 1</button>
+    </section>
+  </div>
+
+  <script>
+    // ===== Stage 1: Puzzle Pilihan Ganda =====
+    const stage1Questions = {
+      1: {
+        question: "Apa arti kata 'rumah' dalam Bahasa Indonesia?",
+        options: ["Tempat tinggal", "Kendaraan", "Makanan", "Hewan"],
+        correct: 0,
+      },
+      2: {
+        question: "Susun kata dari huruf: a t k a",
+        options: ["Kata", "Atak", "Taka", "Akta"],
+        correct: 0,
+      },
+      3: {
+        question: "Apa fungsi Bahasa Indonesia sebagai bahasa nasional?",
+        options: [
+          "Hanya untuk sekolah",
+          "Alat komunikasi antar suku",
+          "Bahasa asing",
+          "Hanya untuk bisnis",
+        ],
+        correct: 1,
+      },
+      4: {
+        question: "Susun kata dari huruf: e m a k n a",
+        options: ["makna", "maknae", "makena", "makane"],
+        correct: 0,
+      },
+      5: {
+        question: "Apa contoh kata kerja dalam Bahasa Indonesia?",
+        options: ["Cepat", "Makan", "Biru", "Meja"],
+        correct: 1,
+      },
+      6: {
+        question: "Susun kata dari huruf: i n d o n e s i a",
+        options: ["Indonesia", "Indoneisa", "Inodesia", "Indosia"],
+        correct: 0,
+      },
+      7: {
+        question: "Mengapa Bahasa Indonesia penting untuk pendidikan?",
+        options: [
+          "Hanya untuk anak kecil",
+          "Alat utama belajar di sekolah",
+          "Bahasa rahasia",
+          "Tidak penting",
+        ],
+        correct: 1,
+      },
+      8: {
+        question: "Susun kata dari huruf: p e n d i d i k a n",
+        options: ["Pendidikan", "Pendidikan", "Pendikidan", "Pendidikan"],
+        correct: 0,
+      },
+      9: {
+        question: "Apa peran Bahasa Indonesia dalam identitas nasional?",
+        options: [
+          "Memisahkan suku",
+          "Menyatukan bangsa",
+          "Hanya untuk turis",
+          "Bahasa kuno",
+        ],
+        correct: 1,
+      },
+      10: {
+        question: "Susun kata dari huruf: k o m u n i k a s i",
+        options: ["Komunikasi", "Komunikasi", "Komuniksi", "Komunikasi"],
+        correct: 0,
+      },
+    };
+
+    let currentLevel = 1;
+    let attempts = 3;
+
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+    const messageEl = document.getElementById("message");
+    const attemptsEl = document.getElementById("attempts");
+
+    function loadStage1Level() {
+      const levelData = stage1Questions[currentLevel];
+
+      questionEl.textContent = levelData.question;
+      attemptsEl.textContent = attempts;
+
+      optionsEl.innerHTML = "";
+
+      levelData.options.forEach((opt, index) => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "option";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = "answer";
+        radio.value = index;
+        radio.id = `opt${index}`;
+
+        const label = document.createElement("label");
+        label.htmlFor = `opt${index}`;
+        label.textContent = opt;
+
+        optionDiv.appendChild(radio);
+        optionDiv.appendChild(label);
+        optionsEl.appendChild(optionDiv);
+      });
+
+      messageEl.textContent = "";
+    }
+
+    function checkAnswer() {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) {
+        messageEl.textContent = "Pilih salah satu opsi!";
+        return;
+      }
+      const answer = parseInt(selected.value);
+      const levelData = stage1Questions[currentLevel];
+
+      if (answer === levelData.correct) {
+        messageEl.style.color = "#2e7d32";
+        messageEl.textContent =
+          "Benar! Bahasa Indonesia penting untuk komunikasi dan identitas nasional. Lanjut ke level berikutnya!";
+        currentLevel++;
+        attempts = 3;
+
+        if (currentLevel > 10) {
+          alert("Selamat! Anda menyelesaikan semua level Stage 1!");
+          // Tampilkan tombol lanjut Stage 2 (sudah ada)
+        } else {
+          setTimeout(() => {
+            messageEl.style.color = "#d32f2f";
+            loadStage1Level();
+          }, 1500);
+        }
+      } else {
+        attempts--;
+        if (attempts > 0) {
+          messageEl.style.color = "#d32f2f";
+          messageEl.textContent = `Salah! Coba lagi. Kesempatan tersisa: ${attempts}`;
+          attemptsEl.textContent = attempts;
+        } else {
+          messageEl.style.color = "#d32f2f";
+          messageEl.textContent = `Game Over level ini. Jawaban benar: ${
+            levelData.options[levelData.correct]
+          }. Mulai ulang level.`;
+          attempts = 3;
+          attemptsEl.textContent = attempts;
+          setTimeout(() => {
+            messageEl.textContent = "";
+            loadStage1Level();
+          }, 2500);
+        }
+      }
+    }
+
+    // ===== STAGE 2: Pindahkan Kata =====
+    const stage2Words = [
+      { text: "berdiri", category: "kata-kerja" },
+      { text: "malas", category: "kata-sifat" },
+      { text: "pensil", category: "kata-benda" },
+      { text: "bermain", category: "kata-kerja" },
+      { text: "duduk", category: "kata-kerja" },
+      { text: "pendek", category: "kata-sifat" },
+      { text: "piano", category: "kata-benda" },
+      { text: "minum", category: "kata-kerja" },
+      { text: "rajin", category: "kata-sifat" },
+      { text: "gajah", category: "kata-benda" },
+      { text: "buku", category: "kata-benda" },
+      { text: "makan", category: "kata-kerja" },
+      { text: "kursi", category: "kata-benda" },
+      { text: "baru", category: "kata-sifat" },
+      { text: "gendang", category: "kata-benda" },
+      { text: "cantik", category: "kata-sifat" },
+      { text: "bersih", category: "kata-sifat" },
+      { text: "berlari", category: "kata-kerja" },
+      { text: "tinggi", category: "kata-sifat" },
+      { text: "kotor", category: "kata-sifat" },
+      { text: "semut", category: "kata-benda" },
+      { text: "bernyanyi", category: "kata-kerja" },
+      { text: "menari", category: "kata-kerja" },
+    ];
+
+    const wordBankEl = document.getElementById("word-bank");
+    const resultMessageEl = document.getElementById("result-message");
+
+    // Inisialisasi word bank kata-kata yang bisa drag
+    function initWordBank() {
+      wordBankEl.innerHTML = "";
+      stage2Words.forEach((word, i) => {
+        const span = document.createElement("div");
+        span.className = "word";
+        span.textContent = word.text;
+        span.setAttribute("draggable", "true");
+        span.id = "word-" + i;
+        span.dataset.category = word.category;
+        span.addEventListener("dragstart", drag);
+        wordBankEl.appendChild(span);
+      });
+      resultMessageEl.textContent = "";
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      const data = ev.dataTransfer.getData("text");
+      const dragged = document.getElementById(data);
+
+      // Pastikan target drop area adalah dropzone
+      if (ev.target.classList.contains("dropzone")) {
+        ev.target.appendChild(dragged);
+      } else if (ev.target.classList.contains("word")) {
+        // jika drop ke elemen kata lain, append ke parent elemen itu (dropzone)
+        ev.target.parentElement.appendChild(dragged);
+      }
+    }
+
+    function checkStage2Answers() {
+      let correctCount = 0;
+      const total = stage2Words.length;
+
+      for (let i = 0; i < total; i++) {
+        const wordEl = document.getElementById("word-" + i);
+        const currentParent = wordEl.parentElement;
+        // Parent dropzone id harus match kategori kata
+        if (
+          currentParent &&
+          currentParent.id === stage2Words[i].category.replace("kata-", "drop-")
+        ) {
+          correctCount++;
+        }
+      }
+
+      if (correctCount === total) {
+        resultMessageEl.style.color = "#2e7d32";
+        resultMessageEl.textContent = "Selamat! Semua kata sudah pada kategori yang benar.";
+      } else {
+        resultMessageEl.style.color = "#d32f2f";
+        resultMessageEl.textContent = `Masih ada ${total - correctCount} kata yang salah tempat. Coba lagi ya!`;
+      }
+    }
+
+    // Navigasi antar stage
+    function goToStage2() {
+      document.getElementById("stage1").style.display = "none";
+      document.getElementById("stage2").style.display = "block";
+      initWordBank();
+    }
+
+    function backToStage1() {
+      document.getElementById("stage2").style.display = "none";
+      document.getElementById("stage1").style.display = "block";
+      // Kembalikan stage 1 ke state terakhir
+      loadStage1Level();
+    }
+
+    // Load stage 1 pertama kali
+    window.onload = () => {
+      loadStage1Level();
+    };
+  </script>
+</body>
+</html>
