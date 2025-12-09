@@ -3,7 +3,7 @@ body {
   background: linear-gradient(to bottom, #e0f7fa, #ffffff);
   color: #333;
   margin: 0;
-  padding: 20px 0;
+  padding: 10px 0;
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -11,11 +11,11 @@ body {
 
 .container {
   max-width: 900px;
-  width: 100%;
+  width: 95%;
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-  padding: 25px 40px;
+  padding: 15px 20px;
   text-align: center;
 }
 
@@ -224,6 +224,56 @@ button:hover {
   }
   .category {
     margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-btn {
+    padding: 12px 20px;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 18px;
+    margin: 5px 3px;
+  }
+
+  #question {
+    font-size: 20px;
+    margin: 1em 0 0.5em;
+  }
+
+  .option {
+    margin-bottom: 15px;
+    gap: 12px;
+  }
+
+  .option input[type="radio"] {
+    transform: scale(1.5);
+  }
+
+  .word {
+    padding: 12px 25px;
+    min-width: 100px;
+    font-size: 16px;
+  }
+
+  .category h3 {
+    font-size: 18px;
+  }
+
+  .admin-level input[type="text"],
+  .admin-level select,
+  .admin-level input[type="number"] {
+    width: 100%;
+    padding: 8px 10px;
+  }
+
+  footer {
+    position: relative;
+    padding: 15px 0;
   }
 }
 /* Footer styling */
