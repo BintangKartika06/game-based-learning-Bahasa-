@@ -38,7 +38,7 @@ nav {
 
 .nav-btn:hover,
 .nav-btn.active {
-  background-color: #26a69a;
+  background-color: #445e5b;
 }
 
 main section {
@@ -181,6 +181,7 @@ button:hover {
   cursor: grab;
 }
 
+
 /* Form Admin Stage 1 */
 #admin-stage1, #admin-stage2 {
   max-height: 350px;
@@ -218,12 +219,229 @@ button:hover {
   margin-top: 4px;
 }
 
+/* Enhanced Home Page Styles */
+.home-header {
+  text-align: center;
+  padding: 20px 0;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.home-header h1 {
+  color: #00796b;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #00695c;
+  font-weight: 500;
+}
+
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 40px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #e1f5fe 0%, #b2ebf2 100%);
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+}
+
+.game-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  animation: pulse 2s infinite;
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 500px;
+  text-align: left;
+}
+
+.hero-content h2 {
+  color: #00695c;
+  font-size: 24px;
+  margin-top: 0;
+}
+
+.hero-content p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #004d40;
+}
+
+.btn-primary {
+  background-color: #ff6f00;
+  font-weight: 600;
+  padding: 12px 30px;
+  border-radius: 25px;
+  box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3);
+  margin-top: 15px;
+  font-size: 18px;
+}
+
+.btn-primary:hover {
+  background-color: #f57c00;
+}
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px 0;
+}
+
+.feature-card {
+  flex: 1;
+  min-width: 250px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.feature-icon {
+  background-color: #e0f7fa;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+
+.feature-card h3 {
+  color: #00796b;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.feature-card p {
+  color: #00695c;
+  line-height: 1.5;
+}
+
+.game-preview {
+  margin: 50px 0;
+  padding: 30px 20px;
+  background-color: #f1f8e9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.game-preview h3 {
+  color: #558b2f;
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.game-stage-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.game-stage-card {
+  flex: 1;
+  min-width: 280px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-stage-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #00796b, #4db6ac);
+}
+
+.stage-number {
+  width: 50px;
+  height: 50px;
+  background-color: #00796b;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 auto 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.game-stage-card h4 {
+  color: #00796b;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.game-stage-card p {
+  color: #00695c;
+  line-height: 1.5;
+}
+
+
 @media (max-width: 700px) {
   .categories {
     flex-direction: column;
   }
   .category {
     margin-bottom: 20px;
+  }
+  
+  .hero-section {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .hero-content {
+    text-align: center;
+  }
+  
+  .game-preview h3 {
+    font-size: 18px;
   }
 }
 
@@ -271,9 +489,30 @@ button:hover {
     padding: 8px 10px;
   }
 
+
   footer {
     position: relative;
     padding: 15px 0;
+  }
+  
+  .home-header h1 {
+    font-size: 22px;
+  }
+  
+  .hero-content h2 {
+    font-size: 20px;
+  }
+  
+  .features {
+    flex-direction: column;
+  }
+  
+  .feature-card {
+    width: 100%;
+  }
+  
+  .game-stage-cards {
+    flex-direction: column;
   }
 }
 /* Footer styling */

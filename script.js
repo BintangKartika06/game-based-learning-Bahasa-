@@ -32,8 +32,13 @@ function showSection(name) {
 }
 
 
+
 document.getElementById("start-game-btn").addEventListener("click", () => {
+  // Activate the game button in navigation
   document.getElementById("btn-game").click();
+  
+  // Show Stage 1 of the game
+  showStage1();
 });
 
 
