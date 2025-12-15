@@ -1,6 +1,6 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+  background: linear-gradient(to bottom, #e3f2fd, #ffffff);
   color: #333;
   margin: 0;
   padding: 10px 0;
@@ -24,7 +24,7 @@ nav {
 }
 
 .nav-btn {
-  background-color: #4db6ac;
+  background-color: #1976d2;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -38,7 +38,7 @@ nav {
 
 .nav-btn:hover,
 .nav-btn.active {
-  background-color: #445e5b;
+  background-color: #1565c0;
 }
 
 main section {
@@ -50,7 +50,7 @@ main section.active-section {
 }
 
 h1, h2, h3 {
-  color: #00796b;
+  color: #1976d2;
 }
 
 #question {
@@ -82,7 +82,7 @@ h1, h2, h3 {
 }
 
 button {
-  background-color: #4db6ac;
+  background-color: #1976d2;
   color: white;
   border: none;
   padding: 10px 22px;
@@ -95,7 +95,7 @@ button {
 }
 
 button:hover {
-  background-color: #26a69a;
+  background-color: #1565c0;
 }
 
 #message,
@@ -107,7 +107,7 @@ button:hover {
 }
 
 #attempts {
-  color: #f57c00;
+  color: #ff0000;
   font-weight: 600;
   margin-bottom: 1em;
 }
@@ -122,13 +122,13 @@ button:hover {
 }
 
 .word {
-  background-color: #a5d6a7;
-  color: #1b5e20;
+  background-color: #90caf9;
+  color: #0d47a1;
   padding: 10px 20px;
   border-radius: 25px;
   cursor: grab;
   font-weight: 600;
-  box-shadow: 0 2px 4px rgba(27, 94, 32, 0.4);
+  box-shadow: 0 2px 4px rgba(13, 71, 161, 0.4);
   transition: background-color 0.3s;
   min-width: 80px;
   text-align: center;
@@ -147,10 +147,10 @@ button:hover {
 
 .category {
   flex: 1;
-  background-color: #c8e6c9;
+  background-color: #bbdefb;
   border-radius: 12px;
   padding: 15px;
-  box-shadow: inset 0 0 5px rgba(46, 125, 50, 0.3);
+  box-shadow: inset 0 0 5px rgba(13, 71, 161, 0.3);
   display: flex;
   flex-direction: column;
   min-height: 150px;
@@ -158,14 +158,14 @@ button:hover {
 
 .category h3 {
   margin: 0 0 12px 0;
-  color: #2e7d32;
+  color: #0d47a1;
   font-weight: 700;
 }
 
 .dropzone {
   flex-grow: 1;
-  background-color: #edf7ed;
-  border: 2px dashed #81c784;
+  background-color: #e3f2fd;
+  border: 2px dashed #42a5f5;
   border-radius: 10px;
   padding: 10px;
   display: flex;
@@ -224,20 +224,20 @@ button:hover {
   text-align: center;
   padding: 20px 0;
   margin-bottom: 30px;
-  background: linear-gradient(135deg, #e0f7fa 0%, #80deea 100%);
+  background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%);
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .home-header h1 {
-  color: #00796b;
+  color: #1976d2;
   font-size: 28px;
   margin-bottom: 10px;
 }
 
 .subtitle {
   font-size: 18px;
-  color: #00695c;
+  color: #1565c0;
   font-weight: 500;
 }
 
@@ -249,7 +249,7 @@ button:hover {
   gap: 30px;
   margin: 40px 0;
   padding: 25px;
-  background: linear-gradient(135deg, #e1f5fe 0%, #b2ebf2 100%);
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
   border-radius: 15px;
   box-shadow: 0 6px 12px rgba(0,0,0,0.08);
 }
@@ -269,7 +269,7 @@ button:hover {
 }
 
 .hero-content h2 {
-  color: #00695c;
+  color: #1565c0;
   font-size: 24px;
   margin-top: 0;
 }
@@ -277,21 +277,21 @@ button:hover {
 .hero-content p {
   font-size: 16px;
   line-height: 1.6;
-  color: #004d40;
+  color: #0d47a1;
 }
 
 .btn-primary {
-  background-color: #ff6f00;
+  background-color: #fdd835;
   font-weight: 600;
   padding: 12px 30px;
   border-radius: 25px;
-  box-shadow: 0 4px 8px rgba(255, 111, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(253, 216, 53, 0.3);
   margin-top: 15px;
   font-size: 18px;
 }
 
 .btn-primary:hover {
-  background-color: #f57c00;
+  background-color: #f9a825;
 }
 
 
@@ -331,7 +331,7 @@ button:hover {
 }
 
 .feature-icon {
-  background-color: #e0f7fa;
+  background-color: #e3f2fd;
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -342,26 +342,26 @@ button:hover {
 }
 
 .feature-card h3 {
-  color: #00796b;
+  color: #1976d2;
   margin-top: 10px;
   font-size: 18px;
 }
 
 .feature-card p {
-  color: #00695c;
+  color: #1565c0;
   line-height: 1.5;
 }
 
 .game-preview {
   margin: 50px 0;
   padding: 30px 20px;
-  background-color: #f1f8e9;
+  background-color: #e3f2fd;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.08);
 }
 
 .game-preview h3 {
-  color: #558b2f;
+  color: #1976d2;
   font-size: 22px;
   margin-bottom: 25px;
 }
@@ -393,13 +393,13 @@ button:hover {
   left: 0;
   width: 100%;
   height: 5px;
-  background: linear-gradient(to right, #00796b, #4db6ac);
+  background: linear-gradient(to right, #1976d2, #42a5f5);
 }
 
 .stage-number {
   width: 50px;
   height: 50px;
-  background-color: #00796b;
+  background-color: #1976d2;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -412,13 +412,13 @@ button:hover {
 }
 
 .game-stage-card h4 {
-  color: #00796b;
+  color: #1976d2;
   font-size: 20px;
   margin: 10px 0;
 }
 
 .game-stage-card p {
-  color: #00695c;
+  color: #1565c0;
   line-height: 1.5;
 }
 
@@ -518,7 +518,7 @@ button:hover {
 /* Footer styling */
 footer {
   width: 100%;
-  background-color: #00796b;
+  background-color: #0d47a1;
   color: white;
   padding: 12px 0;
   text-align: center;
